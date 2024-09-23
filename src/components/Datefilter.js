@@ -10,7 +10,7 @@ const DateFilter = ({ onFilter }) => {
 
   return (
     <div style={{ border: '1px solid orange', padding: '10px', borderRadius: '5px' }}>
-      <h3>Patrimoine</h3>
+      <h3>Entrées</h3>
       <label>
         De: 
         <input 
