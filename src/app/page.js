@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://b82b1763d1c3.eu-west-3.captcha-sdk.awswaf.com/b82b1763d1c3/jsapi.js";
+    script.src = "https://09bd26e5e726.eu-west-3.captcha-sdk.awswaf.com/09bd26e5e726/jsapi.js";
     script.defer = true;
     document.body.appendChild(script);
 
@@ -36,7 +36,9 @@ export default function Home() {
     for (let i = 1; i <= N; i++) {
       try {
         const response = await fetch("https://api.prod.jcloudify.com/whoami", {
+          method: "GET",
           headers: { "Content-Type": "application/json" },
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_CREDENTIAL}`,
         });
 
         if (response.status === 403) {
@@ -45,7 +47,7 @@ export default function Home() {
           return;
         }
 
-        const result = await response.text(); // Parse response if needed
+        const result = await response.text();
         setSequence((prev) => [...prev, `${i}. Forbidden`]);
       } catch (error) {
         setSequence((prev) => [...prev, `${i}. Error: ${error.message}`]);
